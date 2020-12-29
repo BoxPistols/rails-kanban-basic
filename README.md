@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
+- Example:
+  - <https://github.com/BoxPistols/tweetApp_Rails_TP/wiki>
 
-* Ruby version
+---
 
-* System dependencies
+## Bootstrap / FA の導入
 
-* Configuration
+- Gem でなく WebPack と Yarn で
 
-* Database creation
+## 共通 Component
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- 共通化方法
+  - app/views/partial/\_header.html.erb を作成して
+  - app/views/layouts/application.html.erb で include

@@ -9,14 +9,14 @@ body {
 // header
 
 .header {
-  background: #026aa7;
   padding: 10px;
+  background: #026aa7;
 
   .nav {
     .header_menu {
+      position: relative;
       display: flex;
       width: 100%;
-      position: relative;
       margin: 0;
       padding: 0;
       justify-content: space-between;
@@ -32,12 +32,12 @@ body {
       }
 
       &_title {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
         font-size: 25px;
         font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
 
       &_inner {
@@ -48,10 +48,10 @@ body {
         .listNew {
           &:after {
             font-family: "Font Awesome 5 Free";
-            content: "\f044";
+            font-size: 20px;
             display: inline-block;
             margin-left: 10px;
-            font-size: 20px;
+            content: "\f044";
           }
         }
       }

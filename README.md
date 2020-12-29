@@ -9,7 +9,8 @@
 
 ## Rails Basic
 
-Link = `<%= link_to '表示したい文字', パス, メソッド %>`
+- Link = `<%= link_to '表示したい文字', パス, メソッド %>`
+- マイグレーションファイル作成 `rails g migration クラス名 カラム名:型`
 
 ---
 
@@ -138,19 +139,35 @@ views/partial/\_header.html.erb
 Devise のヘルパーメソッド`authenticate_user!`を使う
 `app/controllers/application_controller.rb`
 
-````ruby
+```ruby
       # アクションを実行する前にフィルターをかけるメソッド
       before_action :authenticate_user!
       # 非サインインアクセス時、サインインページにリダイレクト
-               ```
+```
 
-    - ログインしていない時/ログアウト時
-      - <http://localhost:3000/> にアクセス
-        - <http://localhost:3000/users/sign_in>　にリダイレクト
+- ログインしていない時/ログアウト時
+  - <http://localhost:3000/> にアクセス
+    - <http://localhost:3000/users/sign_in>　にリダイレクト
 
-    ## users テーブルに name カラムを追加
+## users テーブルに name カラムを追加
 
-    - Devise にはデフォルトで name カラムが無い
-      - ユーザー名がサービスで必要な場合は、テーブルにカラム追加が必要
-        - name カラムを users テーブルに追加
-````
+devise に username カラムを追加し、username を登録できるようにする。
+<https://qiita.com/yasuno0327/items/ff17ddb6a4167fc6b471>
+
+- Devise にはデフォルトで name カラムが無い
+- ユーザー名がサービスで必要な場合は、テーブルにカラム追加が必要
+- name カラムを users テーブルに追加
+
+- Flow
+  - カラムを追加するためのマイグレーションファイルの作成
+  - マイグレーションファイルを実行
+  - バリデーションの設定
+  - name カラムを保存できるようにする
+
+`rails g migration クラス名 カラム名:型`
+`rails g migration AddNameToUser name:string`
+
+※ 動かない時：`spring stop`
+
+Created:
+`db/migrate/20201229111051_add_name_to_user.rb`

@@ -7,6 +7,12 @@
 
 ---
 
+## Rails Basic
+
+Link = `<%= link_to '表示したい文字', パス, メソッド %>`
+
+---
+
 ## Bootstrap / FA の導入
 
 - Gem でなく WebPack と Yarn で
@@ -80,3 +86,44 @@ Rails devise で使えるようになるヘルパーメソッド一覧
       rails console
       User.first
       exit
+
+### Sign Out
+
+- ルートの確認
+  - `rails routes`
+    - keyword `sign_out` Search
+
+```ruby
+# HTTPメソッド: DELETE
+destroy_user_session DELETE /users/sign_out(.:format)
+
+devise/sessions#destroy
+```
+
+views/partial/\_header.html.erb
+`<li><%= link_to "サインアウト", destroy_user_session_path, class: "nav-link", method: :delete %></li>`
+
+パス：destroy_user_session_path
+メソッド：delete
+
+### リダイレクト
+
+#### 要件/仕様
+
+- サインアウト
+  - サインイン・サインアップページ以外のページ行かせない
+- 非サインイン
+  - サインインページにリダイレクトする
+
+Devise のヘルパーメソッド`authenticate_user!`を使う
+`app/controllers/application_controller.rb`
+
+```ruby
+  # アクションを実行する前にフィルターをかけるメソッド
+  before_action :authenticate_user!
+  # 非サインインアクセス時、サインインページにリダイレクト
+```
+
+- ログインしていない時/ログアウト時
+  - <http://localhost:3000/> にアクセス
+    - <http://localhost:3000/users/sign_in>　にリダイレクト

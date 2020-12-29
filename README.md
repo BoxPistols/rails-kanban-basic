@@ -11,6 +11,7 @@
 
 - Link = `<%= link_to '表示したい文字', パス, メソッド %>`
 - マイグレーションファイル作成 `rails g migration クラス名 カラム名:型`
+- バリデーション： `validates :カラム名, バリデーション`
 
 ---
 
@@ -151,8 +152,12 @@ Devise のヘルパーメソッド`authenticate_user!`を使う
 
 ## users テーブルに name カラムを追加
 
+### Doc
+
 devise に username カラムを追加し、username を登録できるようにする。
 <https://qiita.com/yasuno0327/items/ff17ddb6a4167fc6b471>
+
+### Why
 
 - Devise にはデフォルトで name カラムが無い
 - ユーザー名がサービスで必要な場合は、テーブルにカラム追加が必要
@@ -164,6 +169,8 @@ devise に username カラムを追加し、username を登録できるように
   - バリデーションの設定
   - name カラムを保存できるようにする
 
+### Rails g
+
 `rails g migration クラス名 カラム名:型`
 `rails g migration AddNameToUser name:string`
 
@@ -171,3 +178,17 @@ devise に username カラムを追加し、username を登録できるように
 
 Created:
 `db/migrate/20201229111051_add_name_to_user.rb`
+
+### 制約をつける:
+
+`add_column :users, :name, :string, null: false, default: ""`
+
+migrate テーブル反映
+`rails db:migrate`
+
+#### Validate:
+
+- models/user.rb
+  - `validates :name, presence: true, length: { maximum: 20 } end`
+    - `presence: true` not null
+    - `length: { maximum: 20 }` max20 文字

@@ -68,3 +68,15 @@ Create Table
 
 Rails devise で使えるようになるヘルパーメソッド一覧
 <https://qiita.com/tobita0000/items/866de191635e6d74e392>
+
+### ユーザー登録
+
+登録ユーザーのレコードを取得
+
+> first メソッドは、デフォルトでは主キー順の最初のレコードを取り出します。
+
+<https://railsguides.jp/active_record_querying.html#first>
+
+      rails console
+      User.first
+      exit

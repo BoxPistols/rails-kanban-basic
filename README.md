@@ -2,7 +2,7 @@
 
 ---
 
-- Example:
+- Rails 開発基盤 Example:
   - <https://github.com/BoxPistols/tweetApp_Rails_TP/wiki>
 
 ---
@@ -12,6 +12,26 @@
 Link = `<%= link_to '表示したい文字', パス, メソッド %>`
 
 ---
+
+## 要件定義/設計
+
+- サインアップ・サインイン機能
+  - ユーザー名
+  - メールアドレス
+  - パスワード
+- カンバン/リスト
+  - リストタイトル
+  - 作成ユーザー情報
+- カンバン/カード
+  - タイトル
+  - カード詳細
+  - リストの場所との照合
+
+## 主に必要な情報
+
+1.  ユーザー情報
+2.  リスト情報
+3.  カード情報
 
 ## Bootstrap / FA の導入
 
@@ -118,12 +138,19 @@ views/partial/\_header.html.erb
 Devise のヘルパーメソッド`authenticate_user!`を使う
 `app/controllers/application_controller.rb`
 
-```ruby
-  # アクションを実行する前にフィルターをかけるメソッド
-  before_action :authenticate_user!
-  # 非サインインアクセス時、サインインページにリダイレクト
-```
+````ruby
+      # アクションを実行する前にフィルターをかけるメソッド
+      before_action :authenticate_user!
+      # 非サインインアクセス時、サインインページにリダイレクト
+               ```
 
-- ログインしていない時/ログアウト時
-  - <http://localhost:3000/> にアクセス
-    - <http://localhost:3000/users/sign_in>　にリダイレクト
+    - ログインしていない時/ログアウト時
+      - <http://localhost:3000/> にアクセス
+        - <http://localhost:3000/users/sign_in>　にリダイレクト
+
+    ## users テーブルに name カラムを追加
+
+    - Devise にはデフォルトで name カラムが無い
+      - ユーザー名がサービスで必要な場合は、テーブルにカラム追加が必要
+        - name カラムを users テーブルに追加
+````

@@ -11,10 +11,24 @@
   </head>
 
   <body>
-      <%# ==========共通ヘッダー========== %>
+    <% if user_signed_in? %>
       <%= render 'partial/header' %>
-      <%# ==========/共通ヘッダー========== %>
+    <% else %>
+      <%= render 'partial/not-login' %>
+    <% end %>
 
-      <%= yield %>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-info">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
   </body>
 </html>
